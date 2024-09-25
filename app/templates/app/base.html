@@ -1,0 +1,129 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>M.A.P.</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href=" {% static  'img/icon-s.png' %}" rel="icon">
+    <link href=" {% static  'img/apple-touch-icon.png'%}" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+   <!-- <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,
+    600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,
+    300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">-->
+
+    <!-- Vendor CSS Files -->
+    <link href="{% static 'vendor/aos/aos.css'%}" rel="stylesheet">
+    <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css'%}" rel="stylesheet">
+    <link href="{% static 'vendor/bootstrap-icons/bootstrap-icons.css'%}" rel="stylesheet">
+    <link href="{% static 'vendor/boxicons/css/boxicons.min.css'%}" rel="stylesheet">
+    <link href="{% static 'vendor/glightbox/css/glightbox.min.css'%}" rel="stylesheet">
+    <link href="{% static 'vendor/remixicon/remixicon.css'%}" rel="stylesheet">
+    <link href="{% static 'vendor/swiper/swiper-bundle.min.css'%}" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+
+
+    <!-- Template Main CSS File -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+
+
+    <!-- =======================================================
+    * Template Name: Arsha - v4.2.0
+    * Template URL: https://bootstrapmade.com/arsha-free-bootstrap-html-template-corporate/
+    * Author: BootstrapMade.com
+    * License: https://bootstrapmade.com/license/
+    ======================================================== -->
+
+</head>
+
+  <body>
+    <!-- ======= Header ======= -->
+    <header style="background-color: black" id="header" class="fixed-top ">
+        <div  class="container d-flex align-items-center">
+
+          <h1 class="logo me-auto"><a href="{% url 'inicio' %}">M.A.P.</a></h1>
+          <!-- Uncomment below if you prefer to use an image logo -->
+          <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+          <nav id="navbar" class="navbar">
+              <ul>
+                  <li class="dropdown"><a href="#"><span>Sobre</span> <i class="bi bi-chevron-down"></i></a>
+                    <ul>
+                      <li><a class="nav-link scrollto" href="#about">Projeto</a></li>
+                      <!--Nova pagina ao clicar em histórico  (decisão tomada dia tal)-->
+                      <li><a class="nav-link scrollto" href="historico.html">Histórico</a></li>
+                      <li><a class="nav-link scrollto" href="http://map.prp.usp.br/MAP_Bibliografia.html">Referências</a></li> <!--Nova pagina-->
+                      <li><a class="nav-link scrollto" href="#">Como citar</a></li>
+                    </ul>
+                  </li>
+                  <li class="dropdown"><a href="#"><span>Catalógo</span> <i class="bi bi-chevron-down"></i></a>
+                    <ul>
+                      <li><a class="nav-link scrollto" href="catalogo_map.html">Catalogo M.A.P.</a></li>
+                      <li><a class="nav-link scrollto" href="#skills">Estatísticas</a></li>
+                    </ul>
+                  </li>
+                  <li class="dropdown"><a href="#"><span>Corpus</span> <i class="bi bi-chevron-down"></i></a>
+                    <ul>
+                      <li><a class="nav-link scrollto" href="#why-us">Edição piloto</a></li>
+                    </ul>
+                  </li>
+                  <li><a class="nav-link scrollto" href="#team">Equipe</a></li>
+                  <li class="dropdown"><a href="#"><span>Produções</span> <i class="bi bi-chevron-down"></i></a>
+                    <ul>
+                      <li><a class="nav-link scrollto" href="#">Publicações</a></li> <!--Nova pagina-->
+                      <li><a class="nav-link scrollto" href="#">Apresentações</a></li> <!--Nova pagina-->
+                      <li><a class="nav-link scrollto" href="#">M.A.P na mídia</a></li> <!--Nova pagina-->
+                    </ul>
+                  </li>
+                  <!-- <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+                  <li><a class="getstarted scrollto" href="#about">Get Started</a></li> -->
+
+                  <li><a class="nav-link scrollto" href="#contact">Contato</a></li>
+                  <li><a class="nav-link scrollto" href="#cta">Blog</a></li>
+
+                    <li class="dropdown"><a href="#"><span>Login</span> <i class="bi bi-chevron-down"></i></a>
+                        <ul>
+                          <li><a class="nav-link scrollto" href="{% url 'catalogo' %}">Catalogar</a></li> <!--Nova pagina-->
+                          <li><a class="nav-link scrollto" href="{% url 'catalogadas' %}">Consultar</a></li> <!--Nova pagina-->
+                          <li><a class="nav-link scrollto" href="{% url 'inserir_documento' %}">Inserir documento</a></li> <!--Nova pagina-->
+                          <li><a class="nav-link scrollto" href="{% url 'resultado_documentos' %}">Consultar documentos</a></li> <!--Nova pagina-->
+                        </ul>
+                    </li>
+                </ul>
+
+
+                <div style="margin-left:50px;" class="position-relative">
+                  <i style="color: white; font-size: x-large; margin: 5px;" class="bi bi-facebook"></i>
+                  <i style="color: white; font-size: x-large; margin: 5px;" class="bi bi-youtube"></i>
+                  <i style="color: white; font-size: x-large; margin: 5px;" class="bi bi-twitter"></i>
+                  <i style="color: white; font-size: x-large; margin: 5px;" class="bi bi-instagram"></i>
+                </div>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+          </nav><!-- .navbar -->
+        </div>
+    </header><!-- End Header -->
+
+
+
+    {% block content %}
+
+    {% endblock %}
+
+    <footer class="footer">
+      <div class="container">
+        <span class="text-muted">Place sticky footer content here.</span>
+      </div>
+    </footer>
+
+
+
