@@ -1,0 +1,318 @@
+{% extends 'app/base.html' %}
+{% load widget_tweaks %}
+
+{% block content %}
+<section style="padding-bottom: 20px; background: black; height: 200px" id="hero" class="d-flex align-items-center"> {% csrf_token %}
+    <div class="container">
+      <div class="row">
+        <div style="text-align: center" class="col-lg-12 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1">
+          <h1>Documento</h1>
+
+        </div>
+      </div>
+    </div>
+</section><!-- End Hero -->
+
+    <main role="main" class="container">
+      <form style="margin-bottom: 120px"> {% csrf_token %}
+        <fieldset disabled>
+        <!--Colocar uma div com Informações sobre o documento-->
+        <div class="row">
+          <div class="form-group col-md-6">
+          <label class="form-label">Catalogada</label>
+            <input name="catalogada" type="text" list="list_catalogadas" Placeholder="{{ catalogaga }}" class="form-control" style="width:600px;">
+            <datalist name="catalogada" id="list_catalogadas">
+                 {% for results in lista_catalogadas %}
+                        <option value="{{results.nome_modernizado}}">
+                 {% endfor %}
+            </datalist>
+          </div>
+            <div class="form-group col-md-6">
+                <label for="user" class="form-label">Responsável pelo documento</label>
+                <input name="user" type="text" value="{{ documento.responsavel_documento }}" class="form-control" id="user" aria-describedby="user">
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="{{ documento_form.tipo_documento.id_for_label }}">{{ documento_form.tipo_documento.label }}</label>
+                {% render_field documento_form.tipo_documento class="form-control" placeholder=" " %}
+            </div>
+            <div class="form-group col-md-6">
+                <label for="{{ documento_form.subtipo_documento.id_for_label }}">{{ documento_form.subtipo_documento.label }}</label>
+                {% render_field documento_form.subtipo_documento class="form-control" placeholder=" " %}
+            </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-md-6">
+            <label for="{{ documento_form.ano_escrita.id_for_label }}">{{ documento_form.ano_escrita.label }}</label>
+            {% render_field documento_form.ano_escrita class="form-control" placeholder=" " %}
+          </div>
+          <div class="form-group col-md-6">
+            <label for="{{ documento_form.ano_inferencia.id_for_label }}">{{ documento_form.ano_inferencia.label }}</label>
+            {% render_field documento_form.ano_inferencia class="form-control" placeholder=" " %}
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-md-6">
+            <label for="{{ documento_form.datacao_cronologica_inicial.id_for_label }}">{{ documento_form.datacao_cronologica_inicial.label }}</label>
+            {% render_field documento_form.datacao_cronologica_inicial class="form-control" placeholder=" " %}
+          </div>
+          <div class="form-group col-md-6">
+            <label for="{{ documento_form.cronologica_inicial_inferencia.id_for_label }}">{{ documento_form.cronologica_inicial_inferencia.label }}</label>
+            {% render_field documento_form.cronologica_inicial_inferencia class="form-control" placeholder=" " %}
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-md-6">
+            <label for="{{ documento_form.datacao_cronologica_final.id_for_label }}">{{ documento_form.datacao_cronologica_final.label }}</label>
+            {% render_field documento_form.datacao_cronologica_final class="form-control" placeholder=" " %}
+          </div>
+          <div class="form-group col-md-6">
+            <label for="{{ documento_form.cronologica_final_inferencia.id_for_label }}">{{ documento_form.cronologica_final_inferencia.label }}</label>
+            {% render_field documento_form.cronologica_final_inferencia class="form-control" placeholder=" " %}
+          </div>
+        </div>
+      <div class="row">
+        <div class="form-group col-md-6">
+            <label for="{{ documento_form.descricao_conteudo_documento.id_for_label }}">{{ documento_form.descricao_conteudo_documento.label }}</label>
+            {% render_field documento_form.descricao_conteudo_documento class="form-control" placeholder=" " %}
+        </div>
+        <div class="form-group col-md-6">
+            <label for="{{ documento_form.descricao_materia_documento.id_for_label }}">{{ documento_form.descricao_materia_documento.label }}</label>
+            {% render_field documento_form.descricao_materia_documento class="form-control" placeholder=" " %}
+        </div>
+      </div>
+        <div class="row">
+          <div class="form-group col-md-12">
+            <label for="{{ documento_form.autoria_institucional.id_for_label }}">{{ documento_form.autoria_institucional.label }}</label>
+            {% render_field documento_form.autoria_institucional class="form-control" placeholder=" " %}
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-md-12">
+            <label for="{{ documento_form.autoria_documento.id_for_label }}">{{ documento_form.autoria_documento.label }}</label>
+            {% render_field documento_form.autoria_documento class="form-control" placeholder=" " %}
+          </div>
+        </div>
+      <div class="row">
+          <div class="form-group col-md-12">
+            <label for="{{ documento_form.autoria_material.id_for_label }}">{{ documento_form.autoria_material.label }}</label>
+            {% render_field documento_form.autoria_material class="form-control" placeholder=" " %}
+          </div>
+        </div>
+      <div class="row">
+        <div class="form-group col-md-6">
+            <label for="{{ documento_form.arquivo_guarda.id_for_label }}">{{ documento_form.arquivo_guarda.label }}</label>
+            {% render_field documento_form.arquivo_guarda class="form-control" placeholder=" " %}
+        </div>
+        <div class="form-group col-md-6">
+            <label for="{{ documento_form.chave_pesquisa.id_for_label }}">{{ documento_form.chave_pesquisa.label }}</label>
+            {% render_field documento_form.chave_pesquisa class="form-control" placeholder=" " %}
+        </div>
+      </div>
+      <div class="row">
+          <div class="form-group col-md-12">
+            <label for="{{ documento_form.condicao_documento.id_for_label }}">{{ documento_form.condicao_documento.label }}</label>
+            {% render_field documento_form.condicao_documento class="form-control" placeholder=" " %}
+          </div>
+      </div>
+        <div class="row">
+          <div class="form-group col-md-12">
+            <label for="{{ documento_form.indexador_fonte.id_for_label }}">{{ documento_form.indexador_fonte.label }}</label>
+            {% render_field documento_form.indexador_fonte class="form-control" placeholder=" " %}
+          </div>
+        </div>
+      <div class="row">
+          <div class="form-group col-md-12">
+            <label for="{{ documento_form.url_fonte.id_for_label }}">{{ documento_form.url_fonte.label }}</label>
+            {% render_field documento_form.url_fonte class="form-control" placeholder=" " %}
+          </div>
+      </div>
+      <div class="row">
+          <div class="form-group col-md-6">
+            <label for="{{ documento_form.idade_catalogada_documento.id_for_label }}">{{ documento_form.idade_catalogada_documento.label }}</label>
+            {% render_field documento_form.idade_catalogada_documento class="form-control" placeholder=" " %}
+          </div>
+          <div class="form-group col-md-6">
+            <label for="{{ documento_form.estado_civil.id_for_label }}">{{ documento_form.estado_civil.label }}</label>
+            {% render_field documento_form.estado_civil class="form-control" placeholder=" " %}
+          </div>
+      </div>
+      <div class="row">
+          <div class="form-group col-md-12">
+            <label for="{{ documento_form.qualificacao_social_documento.id_for_label }}">{{ documento_form.qualificacao_social_documento.label }}</label>
+            {% render_field documento_form.qualificacao_social_documento class="form-control" placeholder=" " %}
+          </div>
+      </div>
+        <div class="row">
+          <div class="form-group col-md-6">
+            <label for="{{ documento_form.unidade_menor_escrita.id_for_label }}">{{ documento_form.unidade_menor_escrita.label }}</label>
+            {% render_field documento_form.unidade_menor_escrita class="form-control" placeholder=" " %}
+          </div>
+          <div class="form-group col-md-6">
+            <label for="{{ documento_form.conservadora_menor_escrita.id_for_label }}">{{ documento_form.conservadora_menor_escrita.label }}</label>
+            {% render_field documento_form.conservadora_menor_escrita class="form-control" placeholder=" " %}
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-md-6">
+            <label for="{{ documento_form.unidade_intermediaria_escrita.id_for_label }}">{{ documento_form.unidade_intermediaria_escrita.label }}</label>
+            {% render_field documento_form.unidade_intermediaria_escrita class="form-control" placeholder=" " %}
+          </div>
+          <div class="form-group col-md-6">
+            <label for="{{ documento_form.conservadora_intermediaria_escrita.id_for_label }}">{{ documento_form.conservadora_intermediaria_escrita.label }}</label>
+            {% render_field documento_form.conservadora_intermediaria_escrita class="form-control" placeholder=" " %}
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-md-6">
+            <label for="{{ documento_form.unidade_maior_escrita.id_for_label }}">{{ documento_form.unidade_maior_escrita.label }}</label>
+            {% render_field documento_form.unidade_maior_escrita class="form-control" placeholder=" " %}
+          </div>
+          <div class="form-group col-md-6">
+            <label for="{{ documento_form.conservadora_maior_escrita.id_for_label }}">{{ documento_form.conservadora_maior_escrita.label }}</label>
+            {% render_field documento_form.conservadora_maior_escrita class="form-control" placeholder=" " %}
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-md-12">
+            <label for="{{ documento_form.point_escrita.id_for_label }}">{{ documento_form.point_escrita.label }}</label>
+            {% render_field documento_form.point_escrita class="form-control" placeholder=" " %}
+          </div>
+        </div>
+       <div class="row">
+          <div class="form-group col-md-6">
+            <label for="{{ documento_form.unidade_menor_morada.id_for_label }}">{{ documento_form.unidade_menor_morada.label }}</label>
+            {% render_field documento_form.unidade_menor_morada class="form-control" placeholder=" " %}
+          </div>
+          <div class="form-group col-md-6">
+            <label for="{{ documento_form.conservadora_menor_morada.id_for_label }}">{{ documento_form.conservadora_menor_morada.label }}</label>
+            {% render_field documento_form.conservadora_menor_morada class="form-control" placeholder=" " %}
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-md-6">
+            <label for="{{ documento_form.unidade_intermediaria_morada.id_for_label }}">{{ documento_form.unidade_intermediaria_morada.label }}</label>
+            {% render_field documento_form.unidade_intermediaria_morada class="form-control" placeholder=" " %}
+          </div>
+          <div class="form-group col-md-6">
+            <label for="{{ documento_form.conservadora_intermediaria_morada.id_for_label }}">{{ documento_form.conservadora_intermediaria_morada.label }}</label>
+            {% render_field documento_form.conservadora_intermediaria_morada class="form-control" placeholder=" " %}
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-md-6">
+            <label for="{{ documento_form.unidade_maior_morada.id_for_label }}">{{ documento_form.unidade_maior_morada.label }}</label>
+            {% render_field documento_form.unidade_maior_morada class="form-control" placeholder=" " %}
+          </div>
+          <div class="form-group col-md-6">
+            <label for="{{ documento_form.conservadora_maior_morada.id_for_label }}">{{ documento_form.conservadora_maior_morada.label }}</label>
+            {% render_field documento_form.conservadora_maior_morada class="form-control" placeholder=" " %}
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-md-12">
+            <label for="{{ documento_form.point_morada.id_for_label }}">{{ documento_form.point_morada.label }}</label>
+            {% render_field documento_form.point_morada class="form-control" placeholder=" " %}
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-md-12">
+            <label for="{{ documento_form.edicao_filologica_parcial.id_for_label }}">{{ documento_form.edicao_filologica_parcial.label }}</label>
+            {% render_field documento_form.edicao_filologica_parcial class="form-control" placeholder=" " %}
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-md-12">
+            <label for="{{ documento_form.autoria_edicao_conservadora.id_for_label }}">{{ documento_form.autoria_edicao_conservadora.label }}</label>
+            {% render_field documento_form.autoria_edicao_conservadora class="form-control" placeholder=" " %}
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-md-12">
+            <label for="{{ documento_form.autoria_edicao_modernizada.id_for_label }}">{{ documento_form.autoria_edicao_modernizada.label }}</label>
+            {% render_field documento_form.autoria_edicao_modernizada class="form-control" placeholder=" " %}
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-md-12">
+            <label for="{{ documento_form.responsabilidade_revisao_parcial.id_for_label }}">{{ documento_form.responsabilidade_revisao_parcial.label }}</label>
+            {% render_field documento_form.responsabilidade_revisao_parcial class="form-control" placeholder=" " %}
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-md-12">
+            <label for="{{ documento_form.data_revisao.id_for_label }}">{{ documento_form.data_revisao.label }}</label>
+            {% render_field documento_form.data_revisao class="form-control" placeholder=" " %}
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-md-12">
+            <label for="{{ documento_form.ligacao_edicao_filologica.id_for_label }}">{{ documento_form.ligacao_edicao_filologica.label }}</label>
+            {% render_field documento_form.ligacao_edicao_filologica class="form-control" placeholder=" " %}
+          </div>
+        </div>
+      <div class="row">
+        <div class="form-group col-md-12">
+            <label for="{{ documento_form.rede_documental.id_for_label }}">{{ documento_form.rede_documental.label }}</label>
+            {% render_field documento_form.rede_documental class="form-control" placeholder=" " %}
+        </div>
+      </div>
+      <div class="row">
+          <div class="form-group col-md-12">
+            <label for="{{ documento_form.terceira_referida.id_for_label }}">{{ documento_form.terceira_referida.label }}</label>
+            {% render_field documento_form.terceira_referida class="form-control" placeholder=" " %}
+          </div>
+      </div>
+      <div class="row">
+          <div class="form-group col-md-12">
+            <label for="{{ documento_form.trabalhos_andamento.id_for_label }}">{{ documento_form.trabalhos_andamento.label }}</label>
+            {% render_field documento_form.trabalhos_andamento class="form-control" placeholder=" " %}
+          </div>
+      </div>
+      <div class="row">
+          <div class="form-group col-md-12">
+            <label for="{{ documento_form.trabalhos_derivados.id_for_label }}">{{ documento_form.trabalhos_derivados.label }}</label>
+            {% render_field documento_form.trabalhos_derivados class="form-control" placeholder=" " %}
+          </div>
+      </div>
+      <div class="row">
+          <div class="form-group col-md-6">
+            <label for="{{ documento_form.tema.id_for_label }}">{{ documento_form.tema.label }}</label>
+            {% render_field documento_form.tema class="form-control" placeholder=" " %}
+          </div>
+          <div class="form-group col-md-6">
+            <label for="{{ documento_form.subtema.id_for_label }}">{{ documento_form.subtema.label }}</label>
+            {% render_field documento_form.subtema class="form-control" placeholder=" " %}
+          </div>
+      </div>
+      <div class="row">
+          <div class="form-group col-md-12">
+            <label for="{{ documento_form.informacoes_internas.id_for_label }}">{{ documento_form.informacoes_internas.label }}</label>
+            {% render_field documento_form.informacoes_internas class="form-control" placeholder=" " %}
+          </div>
+      </div>
+      <div class="row">
+          <div class="form-group col-md-12">
+            <label for="{{ documento_form.link_gdrive.id_for_label }}">{{ documento_form.link_gdrive.label }}</label>
+            {% render_field documento_form.link_gdrive class="form-control" placeholder=" " %}
+          </div>
+      </div>
+      <div class="row">
+          <div class="form-group col-md-12">
+            <label for="{{ documento_form.gx_media_links.id_for_label }}">{{ documento_form.gx_media_links.label }}</label>
+            {% render_field documento_form.gx_media_links class="form-control" placeholder=" " %}
+          </div>
+      </div>
+      <div class="row">
+          <div class="form-group col-md-3">
+            <label for="{{ documento_form.publicar.id_for_label }}">{{ documento_form.publicar.label }}</label>
+            {% render_field documento_form.publicar class="form-control" placeholder=" " %}
+          </div>
+      </div>
+
+        </fieldset>
+        <a style="background: black" href="{% url 'editar_documento' pk=documento.id %}" class="btn btn-secondary">Editar</a>
+      </form>
+    </main>
+{% endblock %}
