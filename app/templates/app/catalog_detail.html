@@ -27,25 +27,23 @@
     </div>
 
     {% for field in catalogada %}
-        <table class="table table-striped">
+          <table class="table table-striped">
             <thead>
             <tr>
+                <th scope="col">Códido M.A.P.</th>
                 <th scope="col">Códido</th>
                 <th scope="col">Nome modernizado</th>
                 <th scope="col">Responsável catalogação</th>
-                <th scope="col">Data catalogação</th>
-                <th scope="col">Data edição</th>
                 <th scope="col">Publicado</th>
             </tr>
           </thead>
 
               <tbody>
                 <tr>
+                    <td>{{ field.codigo_antes }}</td>
                     <td>{{ field.codigo }}</td>
                     <td>{{ field.nome_modernizado }}</td>
                     <td>{{ field.responsavel_catalogacao}}</td>
-                    <td>{{ field.data_catalogacao }}</td>
-                    <td>{{ field.data_revisao_catalogacao }}</td>
                     <td>{{ field.publicar }}</td>
                 </tr>
               </tbody>

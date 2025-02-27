@@ -27,16 +27,13 @@
     </div>
 
     {% for field in documentos %}
-        <table class="table table-striped" >
+          <table class="table table-striped" >
             <thead>
             <tr>
-                <th scope="col">Id</th>
-                <th scope="col">Catalogada</th>
-                <th scope="col">Descrição conteúdo</th>
-                <th scope="col">Responsável Documento</th>
-                <th scope="col">Data documento</th>
+                <th scope="col">Id do documento</th>
+                <th scope="col">Catalogada vinculada</th>
+                <th scope="col">Tipo de documento</th>
                 <th scope="col">Data edição</th>
-                <th scope="col">Tipo documento</th>
                 <th scope="col">Publicado</th>
 
             </tr>
@@ -46,11 +43,8 @@
                 <tr>
                     <td>{{ field.id }}</td>
                     <td>{{ field.catalogadas.first }}</td>
-                    <td>{{ field.descricao_conteudo_documento}}</td>
-                    <td>{{ field.responsavel_documento}}</td>
-                    <td>{{ field.data_documento}}</td>
+                    <td>{{ field.tipo_documento}}</td>
                     <td>{{ field.data_edicao_documento}}</td>
-                    <td>{{ field.tipo_documento }}</td>
                     <td>{{ field.publicar }}</td>
                 </tr>
               </tbody>

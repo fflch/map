@@ -8,17 +8,18 @@ from django.utils import timezone
 class Catalogada(models.Model):
     #usuaria
     codigo = models.CharField(max_length=10, verbose_name="Código")
+    codigo_antes = models.CharField(max_length=10, null=True, verbose_name="Código antes")
     nome_modernizado = models.CharField(max_length=100, verbose_name="Nome modernizado")
     grafia_conservadora = models.CharField(max_length=100, verbose_name="Grafia conservadora do nome")
     trecho_nomeacao = models.TextField(max_length=400, verbose_name="Trecho modernizado de nomeação")
     trecho_voz = models.TextField(max_length=350, verbose_name="Trecho modernizado da voz")
     detalhamento_perfil = models.TextField(max_length=350, verbose_name="Detalhamento do perfil")
-    unidade_menor_nascimento = models.CharField(max_length=100, verbose_name="Unidade administrativa menor do local de nascimento")
-    conservadora_menor_nascimento = models.CharField(max_length=100, verbose_name="Forma conservadora da unidade administrativa menor do local de nascimento")
-    unidade_intermediaria_nascimento = models.CharField(max_length=100, verbose_name="Unidade administrativa intermediária do local de nascimento")
-    conservadora_intermediaria_nascimento = models.CharField(max_length=100, verbose_name="Forma conservadora da unidade administrativa intermediária de nascimento")
-    unidade_maior_nascimento = models.CharField(max_length=100, verbose_name="Unidade administrativa maior do local de nascimento")
-    conservadora_maior_nascimento = models.CharField(max_length=100, verbose_name="Forma conservadora da unidade administrativa maior de nascimento")
+    unidade_menor_nascimento = models.CharField(max_length=500, verbose_name="Unidade administrativa menor do local de nascimento")
+    conservadora_menor_nascimento = models.CharField(max_length=500, verbose_name="Forma conservadora da unidade administrativa menor do local de nascimento")
+    unidade_intermediaria_nascimento = models.CharField(max_length=500, verbose_name="Unidade administrativa intermediária do local de nascimento")
+    conservadora_intermediaria_nascimento = models.CharField(max_length=500, verbose_name="Forma conservadora da unidade administrativa intermediária de nascimento")
+    unidade_maior_nascimento = models.CharField(max_length=500, verbose_name="Unidade administrativa maior do local de nascimento")
+    conservadora_maior_nascimento = models.CharField(max_length=500, verbose_name="Forma conservadora da unidade administrativa maior de nascimento")
     point_nascimento = models.CharField(max_length=100, verbose_name="Point de georreferenciamento do local de nascimento")
     total_filhs = models.DecimalField(max_digits=4, decimal_places=0, verbose_name="Número total de filhas e filhos")
     total_filhas = models.DecimalField(max_digits=4, decimal_places=0, verbose_name="Número total de filhas")
@@ -36,21 +37,18 @@ class Catalogada(models.Model):
     data_edicao = models.DateTimeField(blank=True, null=True, verbose_name="Data de Edição")
     data_revisao_catalogacao = models.DateTimeField(null=True,
                                                     verbose_name="Data da revisão mais recente da catalogação")
-    publicar = models.BooleanField(blank=False, null=True, verbose_name="Habilitar para publicação")
+    perfil_documental = models.CharField(max_length=200, verbose_name="Perfil documental da catalogada")
+    #publicar = models.BooleanField(blank=False, null=True, verbose_name="Habilitar para publicação")
 
-    class PerfilDocumental(models.TextChoices):
-        OPCAO1 = 'OP1', 'Opção 1'
-        OPCAO2 = 'OP2', 'Opção 2'
-        OPCAO3 = 'OP3', 'Opção 3'
-        OPCAO4 = 'OP4', 'Opção 4'
-        OPCAO5 = 'OP5', 'Opção 5'
+    class Publicar(models.TextChoices):
+        OPCAO1 = 'Sim', 'Sim'
+        OPCAO2 = 'Não', 'Não'
 
-    perfil_documental = models.CharField(
-        max_length=100,
-        choices=PerfilDocumental.choices,
-        default=PerfilDocumental.OPCAO1,
+    publicar = models.CharField(
+        max_length=3,
+        choices=Publicar.choices,
+        default=Publicar.OPCAO2,
     )
-
 
     def publish(self):
         self.data_catalogacao = timezone.now()
@@ -74,6 +72,7 @@ class Documento(models.Model):
 
     #usuario
     catalogadas = models.ManyToManyField(Catalogada, related_name="documentos", verbose_name="Catalogada")
+    codigo_antes = models.CharField(max_length=10, null=True, verbose_name="Código antes")
     ano_escrita = models.DecimalField(max_digits=4, decimal_places=0, verbose_name="Ano de escrita do documento")
     datacao_cronologica_inicial = models.CharField(max_length=15, verbose_name="Datação cronológica inicial")
     datacao_cronologica_final = models.CharField(max_length=15, verbose_name="Datação cronológica final")
@@ -124,108 +123,24 @@ class Documento(models.Model):
     responsavel_documento = models.CharField(max_length=100, verbose_name="Responsabilidade pelo documento")
     data_documento = models.DateTimeField(null=True, verbose_name="Data do documento")
     data_edicao_documento = models.DateTimeField(null=True, verbose_name="Data da edição do documento")
-    publicar = models.BooleanField(blank=False, null=True, verbose_name="Habilitar para publicação")
+    tipo_documento = models.CharField(max_length=500, verbose_name="Tipo de documento")
+    subtipo_documento = models.CharField(max_length=500, verbose_name="Subtipo de documento")
+    ano_inferencia = models.CharField(max_length=500, verbose_name="Ano de escrita do documento inferido")
+    cronologica_inicial_inferencia = models.CharField(max_length=500, verbose_name="Datação cronológica inicial inferida")
+    cronologica_final_inferencia = models.CharField(max_length=500, verbose_name="Datação cronológica final inferida")
+    perfil_documental = models.CharField(max_length=500, verbose_name="Perfil documental da catalogada")
+    arquivo_guarda = models.CharField(max_length=500, verbose_name="Arquivo de guarda")
+    estado_civil = models.CharField(max_length=500, verbose_name="Estado civil da catalogada no documento")
+    #publicar = models.BooleanField(blank=False, null=True, verbose_name="Habilitar para publicação")
 
-    class TidoDocumento(models.TextChoices):
-        OPCAO1 = 'OP1', 'Opção 1'
-        OPCAO2 = 'OP2', 'Opção 2'
-        OPCAO3 = 'OP3', 'Opção 3'
-        OPCAO4 = 'OP4', 'Opção 4'
-        OPCAO5 = 'OP5', 'Opção 5'
+    class Publicar(models.TextChoices):
+        OPCAO1 = 'Sim', 'Sim'
+        OPCAO2 = 'Não', 'Não'
 
-    tipo_documento = models.CharField(
-        max_length=100,
-        choices=TidoDocumento.choices,
-        default=TidoDocumento.OPCAO1,
-    )
-
-    class SubtipoDocumento(models.TextChoices):
-        OPCAO1 = 'OP1', 'Opção 1'
-        OPCAO2 = 'OP2', 'Opção 2'
-        OPCAO3 = 'OP3', 'Opção 3'
-        OPCAO4 = 'OP4', 'Opção 4'
-        OPCAO5 = 'OP5', 'Opção 5'
-
-    subtipo_documento = models.CharField(
-        max_length=100,
-        choices=SubtipoDocumento.choices,
-        default=SubtipoDocumento.OPCAO1,
-    )
-
-    class AnoInferencia(models.TextChoices):
-        OPCAO1 = 'OP1', 'Opção 1'
-        OPCAO2 = 'OP2', 'Opção 2'
-        OPCAO3 = 'OP3', 'Opção 3'
-        OPCAO4 = 'OP4', 'Opção 4'
-        OPCAO5 = 'OP5', 'Opção 5'
-
-    ano_inferencia = models.CharField(
-        max_length=100,
-        choices=AnoInferencia.choices,
-        default=AnoInferencia.OPCAO1,
-    )
-
-    class CronologicaInicialInferencia(models.TextChoices):
-        OPCAO1 = 'OP1', 'Opção 1'
-        OPCAO2 = 'OP2', 'Opção 2'
-        OPCAO3 = 'OP3', 'Opção 3'
-        OPCAO4 = 'OP4', 'Opção 4'
-        OPCAO5 = 'OP5', 'Opção 5'
-
-    cronologica_inicial_inferencia = models.CharField(
-        max_length=100,
-        choices=CronologicaInicialInferencia.choices,
-        default=CronologicaInicialInferencia.OPCAO1,
-    )
-
-    class CronologicaFinalInferencia(models.TextChoices):
-        OPCAO1 = 'OP1', 'Opção 1'
-        OPCAO2 = 'OP2', 'Opção 2'
-        OPCAO3 = 'OP3', 'Opção 3'
-        OPCAO4 = 'OP4', 'Opção 4'
-        OPCAO5 = 'OP5', 'Opção 5'
-
-    cronologica_final_inferencia = models.CharField(
-        max_length=100,
-        choices=CronologicaFinalInferencia.choices,
-        default=CronologicaFinalInferencia.OPCAO1,
-    )
-
-    class PerfilDocumental(models.TextChoices):
-        AUTORA = 'ATR', 'Autora'
-        AUTORA_IND = 'ATRP', 'Autora indireta'
-        NOMEADA_PRIM = 'NDP', 'Nomeada em documento primário'
-
-    perfil_documental = models.CharField(
-        max_length=100,
-        choices=PerfilDocumental.choices,
-        default=PerfilDocumental.AUTORA,
-    )
-
-    class ArquivoGuarda(models.TextChoices):
-        OPCAO1 = 'OP1', 'Opção 1'
-        OPCAO2 = 'OP2', 'Opção 2'
-        OPCAO3 = 'OP3', 'Opção 3'
-        OPCAO4 = 'OP4', 'Opção 4'
-        OPCAO5 = 'OP5', 'Opção 5'
-
-    arquivo_guarda = models.CharField(
-        max_length=100,
-        choices=ArquivoGuarda.choices,
-        default=ArquivoGuarda.OPCAO1,
-    )
-
-    class EstadoCivil(models.TextChoices):
-        OPCAO1 = 'OP1', 'Opção 1'
-        OPCAO2 = 'OP2', 'Opção 2'
-        OPCAO3 = 'OP3', 'Opção 3'
-        OPCAO4 = 'OP4', 'Opção 4'
-        OPCAO5 = 'OP5', 'Opção 5'
-
-    estado_civil = models.CharField(
-        max_length=100,
-        choices=EstadoCivil.choices,
-        default=EstadoCivil.OPCAO1,
+    publicar = models.CharField(
+        max_length=3,
+        choices=Publicar.choices,
+        default=Publicar.OPCAO2,
     )
 
     def publish(self):
@@ -255,7 +170,3 @@ class Documento(models.Model):
    #     self.data_catalogacao = timezone.now()
    #     self.data_revisao_catalogacao = timezone.now()
    #     self.save()
-
-
-
-

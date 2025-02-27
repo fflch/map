@@ -30,6 +30,70 @@
         </div>
     </div>
 
+    <div class="container text-center" style="padding: 30px 15px 0;">
+        <div class="row" style="text-align: left">
+            <h1>Catalogadas</h1>
+        </div>
+        <div class="row">
+            <div class="col">
+
+            {% for field in catalogada %}
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th scope="col">Códido M.A.P.</th>
+                        <th scope="col">Códido</th>
+                        <th scope="col">Nome modernizado</th>
+                        <th scope="col">Perfil</th>
+                        <th scope="col">Data de catalogação</th>
+                        <th scope="col">Publicado</th>
+                    </tr>
+                  </thead>
+
+                      <tbody>
+                        <tr>
+                            <td>{{ field.codigo_antes }}</td>
+                            <td>{{ field.codigo }}</td>
+                            <td>{{ field.nome_modernizado }}</td>
+                            <td>{{ field.detalhamento_perfil}}</td>
+                            <td>{{ field.data_catalogacao }}</td>
+                            <td>{{ field.publicar }}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                {% endfor %}
+        <div class="row" style="text-align: left">
+            <h1>Documentos</h1>
+        </div>
+            {% for field in documentos %}
+                <table class="table table-striped" >
+                    <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Catalogada</th>
+                        <th scope="col">Data documento</th>
+                        <th scope="col">Tipo documento</th>
+                        <th scope="col">Publicado</th>
+
+                    </tr>
+                  </thead>
+
+                      <tbody>
+                        <tr>
+                            <td>{{ field.id }}</td>
+                            <td>{{ field.catalogadas.first }}</td>
+                            <td>{{ field.data_documento}}</td>
+                            <td>{{ field.tipo_documento }}</td>
+                            <td>{{ field.publicar }}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+        {% endfor %}
+
+            </div>
+        </div>
+    </div>
+
     <!--ACOMPANHE O PROJETO-->
     <div class="container-fluid bg-dark text-light" style="padding: 10px 15px 35px;">
         <div class="container">
