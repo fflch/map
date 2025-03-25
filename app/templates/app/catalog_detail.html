@@ -24,6 +24,31 @@
             <!--<button id="search_submit" style="background-color: black; border-color: black;" type="submit" class="btn btn-secondary">Pesquisar</button>-->
           </form>
       </div>
+
+      <div>
+     <!-- <p>
+            Clique <a href="{% url 'gerar_xml_catalogadas' %}"> aqui </a>  para gerar o catálogo completo em XML no padrão M.A.P..
+        </p>
+        <p>
+            Clique <a href="{% url 'gerar_xml_catalogadas_edictor' %}"> aqui </a>  para gerar o catálogo completo em XML no padrão eDictor.
+        </p>-->
+        <p>
+            <br>Clique <a href="{% url 'gerar_arquivos_xml_documentos' %}"> aqui </a>  para gerar XML separados de todas as catalogadas e seus documentos no padrão M.A.P..
+        </p>
+        <p>
+            Clique <a href="{% url 'gerar_arquivos_xml_documentos_unico' %}"> aqui </a>  para gerar o XML único de todas as catalogadas e seus documentos no padrão M.A.P..
+        </p>
+
+        <p>
+            Clique <a href="{% url 'gerar_xml_documentos_edictor' %}"> aqui </a>  para gerar XML separados de todas as catalogadas e seus documentos no padrão eDictor.
+        </p>
+
+        <p>
+            Clique <a href="{% url 'gerar_xml_documentos_edictor_uni' %}"> aqui </a>  para gerar o XML único de todas as catalogadas e seus documentos no padrão eDictor.
+        </p>
+      </div>
+
+
     </div>
 
     {% for field in catalogada %}
@@ -50,10 +75,11 @@
             </table>
             <div class="row" style="margin-bottom: 60px">
                 <div class="col-sm-8">
-                    <a href="{% url 'descricao' pk=field.id %}" class="btn btn-secondary">Visualização completa</a>
-                    <a href="#" class="btn btn-secondary">Informações internas</a>
+                    <a href="{% url 'descricao' pk=field.id %}" class="btn btn-secondary">Visualizar</a>
+                    {# <a href="#" class="btn btn-secondary">Informações internas</a>#}
                     <a href="{% url 'editar' pk=field.id %}" class="btn btn-secondary">Editar</a>
-{#                    <a href="{% url 'gerar_xml' pk=field.id %}" class="btn btn-secondary">Gerar xml</a>#}
+                    <a href="{% url 'gerar_xml' pk=field.id %}" class="btn btn-secondary">Gerar xml</a>
+                    <a href="{% url 'gerar_xml_edictor' pk=field.id %}" class="btn btn-secondary">Gerar xml edictor</a>
                 </div>
             </div>
 

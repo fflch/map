@@ -11,3 +11,4 @@ sqlparse==0.4.2
 typing_extensions==4.12.2
 tzdata==2024.2
 gunicorn==23.0
+lxml==5.3.1
